@@ -1,0 +1,17 @@
+﻿# Root ignores
+.DS_Store
+Thumbs.db
+
+# Java / Maven
+core/target/
+core/.idea/
+core/.project
+core/.classpath
+core/.settings/
+
+# Node / React
+ui/node_modules/
+ui/.env.local
+ui/.parcel-cache
+ui/.vite
+ui/dist/
