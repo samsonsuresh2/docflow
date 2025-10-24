@@ -15,3 +15,9 @@ ui/.env.local
 ui/.parcel-cache
 ui/.vite
 ui/dist/
+
+# IDE settings
+.idea/
+*.iml
+*.ipr
+*.iws

@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: <oracle_db_url>
+    username: <db_username>
+    password: <db_paswrd>
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  flyway:
+    enabled: false
+  docflow:
+    rules:
+      short-circuit: true
