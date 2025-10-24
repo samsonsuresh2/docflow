@@ -26,17 +26,27 @@ public class UploadService {
         String systemId = idService.nextSystemId();
         String clientRefId = idService.nextClientRefId(clientId);
 
-        File dir = new File(basePath + clientId + "/" + systemId);
-        if (!dir.exists() && !dir.mkdirs())
-            throw new IOException("Cannot create directory " + dir.getAbsolutePath());
-        File dest = new File(dir, file.getOriginalFilename());
+        File baseDir = new File(basePath);
+        if (!baseDir.exists() && !baseDir.mkdirs())
+            throw new IOException("Cannot create base directory " + baseDir.getAbsolutePath());
+
+        String originalName = file.getOriginalFilename();
+        String extension = "";
+        if (originalName != null) {
+            int dotIndex = originalName.lastIndexOf('.');
+            if (dotIndex >= 0) {
+                extension = originalName.substring(dotIndex);
+            }
+        }
+
+        File dest = new File(baseDir, systemId + extension);
         file.transferTo(dest);
         log.debug("Saved file to {}", dest.getAbsolutePath());
 
         DocParent doc = new DocParent();
         doc.setSystemDocId(systemId);
         doc.setClientDocId(clientRefId);
-        doc.setDocName(file.getOriginalFilename());
+        doc.setDocName(originalName);
         doc.setMimeType(file.getContentType());
         doc.setFileSize(file.getSize());
         doc.setStoragePath(dest.getAbsolutePath());

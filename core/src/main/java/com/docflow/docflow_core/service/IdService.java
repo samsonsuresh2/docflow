@@ -9,18 +9,18 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 @Service
 public class IdService {
     private static final Logger log = LoggerFactory.getLogger(IdService.class);
-    private final AtomicInteger counter = new AtomicInteger(1);
+    private final AtomicInteger systemCounter = new AtomicInteger(1);
+    private final AtomicInteger clientRefCounter = new AtomicInteger(1);
     private final DecimalFormat fmt = new DecimalFormat("000000");
 
     public String nextSystemId() {
-        String id = "DOC-" + Year.now() + "-" + fmt.format(counter.getAndIncrement());
+        String id = "DOC-" + Year.now() + "-" + fmt.format(systemCounter.getAndIncrement());
         log.debug("Generated systemId={}", id);
         return id;
     }
 
     public String nextClientRefId(String clientId) {
-        String id = clientId.toUpperCase() + "/" + Year.now().getValue()%100 + "/" + fmt.format(counter.getAndIncrement());
-        log.debug("Generated clientRefId={}", id);
+        String id = clientId.toUpperCase() + "/" + Year.now().getValue()%100 + "/" + fmt.format(clientRefCounter.getAndIncrement());        log.debug("Generated clientRefId={}", id);
         return id;
     }
 }
