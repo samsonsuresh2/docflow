@@ -1,8 +1,8 @@
-export async function uploadDocument(file, clientId, uploadedBy) {
+export async function uploadDocument(file, clientId, username) {
   const form = new FormData();
   form.append("file", file);
   form.append("clientId", clientId);
-  form.append("uploadedBy", uploadedBy);
+  form.append("username", username);
   const res = await fetch("/api/documents/upload", {
     method: "POST",
     body: form,

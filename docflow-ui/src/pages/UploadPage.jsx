@@ -18,7 +18,14 @@ export default function UploadPage() {
     try {
       const username = localStorage.getItem("user") || "samson";
       const res = await uploadDocument(file, clientId, username);
-      navigate("/success", { state: res });
+      navigate("/success", {
+        state: {
+          ...res,
+          systemId: res.systemDocId ?? res.systemId ?? "",
+          clientRefId: res.clientDocId ?? res.clientRefId ?? "",
+          status: res.status ?? "",
+        },
+      });
     } catch (err) {
       alert("Upload failed");
     }

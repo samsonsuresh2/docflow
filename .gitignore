@@ -23,4 +23,4 @@ ui/dist/
 *.iws
 
 #Upload path
-uploads2/
+uploads*/
