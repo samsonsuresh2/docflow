@@ -21,3 +21,6 @@ ui/dist/
 *.iml
 *.ipr
 *.iws
+
+#Upload path
+uploads2/

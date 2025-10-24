@@ -3,6 +3,7 @@ package com.docflow.docflow_core.entity;
 import com.docflow.docflow_core.entity.enums.DocumentStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -48,4 +49,17 @@ public class DocParent {
     @Column(name = "LAST_UPDATED")
     private LocalDateTime lastUpdated;
 
+    @Column(name = "MIME_TYPE")
+    private String mimeType;
+
+    @Column(name = "FILE_SIZE")
+    private Long fileSize;
+
+    @Column(name = "STORAGE_PATH")
+    private String storagePath;
+
+
+
 }
+
+
